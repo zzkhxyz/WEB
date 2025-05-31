@@ -65,25 +65,26 @@ function renderArticles(list) {
     `;
 
         card.querySelector(".card").addEventListener("click", () => {
-            if (isExpanded) {
-                article._expanded = false;
-                article.views++;
-                updateMostPopular();
-            } else {
-                articles.forEach(a => a._expanded = false);
-                article._expanded = true;
-            }
+    if (article.category.toLowerCase().includes("финанс") || article.category.toLowerCase().includes("finance")) {
+        alert("F has the hat");
+    }
 
-            const sortedList = sortSelect.value === "views"
-                ? [...articles].sort((a, b) => b.views - a.views)
-                : articles;
+    if (isExpanded) {
+        article._expanded = false;
+        article.views++;
+        updateMostPopular();
+    } else {
+        articles.forEach(a => a._expanded = false);
+        article._expanded = true;
+    }
 
-            renderArticles(sortedList);
-        });
+    const sortedList = sortSelect.value === "views"
+        ? [...articles].sort((a, b) => b.views - a.views)
+        : articles;
 
-        newsContainer.appendChild(card);
-    });
-}
+    renderArticles(sortedList);
+});
+
 
 function updateMostPopular() {
     const top = [...articles].sort((a, b) => b.views - a.views)[0];
