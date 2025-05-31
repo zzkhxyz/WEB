@@ -65,7 +65,7 @@ function renderArticles(list) {
     `;
 
         card.querySelector(".card").addEventListener("click", () => {
-    if (article.category.toLowerCase().includes("финанс") || article.category.toLowerCase().includes("finance")) {
+    if (article.category.toLowerCase().includes("Finance")) {
         alert("F has the hat");
     }
 
