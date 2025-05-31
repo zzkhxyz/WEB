@@ -18,7 +18,6 @@ fetch("article.json")
     .then(data => {
         articles = data.articles;
 
-        // путь к изображению — из папки img/
         articles.forEach(article => {
             article.image = `img/${article.id}.jpg`;
         });
@@ -103,13 +102,36 @@ function activateCatForce() {
         btn.textContent = "🐱 Activate CATFORCE";
         btn.className = "btn btn-outline-primary mt-4";
         btn.onclick = () => {
-            alert("🌍 CATFORCE ACTIVATED! Renewable energy is now 9001% more efficient ⚡🐾");
-            document.body.style.backgroundImage = "url('https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif')";
-            document.body.style.backgroundRepeat = "no-repeat";
-            document.body.style.backgroundPosition = "center";
-            document.body.style.backgroundSize = "contain";
+            const overlay = document.createElement("div");
+            overlay.style.position = "fixed";
+            overlay.style.top = 0;
+            overlay.style.left = 0;
+            overlay.style.width = "100%";
+            overlay.style.height = "100%";
+            overlay.style.backgroundColor = "#000";
+            overlay.style.zIndex = 9999;
+            overlay.style.display = "flex";
+            overlay.style.alignItems = "center";
+            overlay.style.justifyContent = "center";
+
+            const gif = document.createElement("img");
+            gif.src = "https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif";
+            gif.style.maxWidth = "100%";
+            gif.style.maxHeight = "100%";
+            overlay.appendChild(gif);
+
+            const allContent = document.body.children;
+            for (let i = 0; i < allContent.length; i++) {
+                if (allContent[i] !== overlay) {
+                    allContent[i].style.display = "none";
+                }
+            }
+            document.body.appendChild(overlay);
             setTimeout(() => {
-                document.body.style.backgroundImage = "none";
+                overlay.remove();
+                for (let i = 0; i < allContent.length; i++) {
+                    allContent[i].style.display = "";
+                }
             }, 5000);
         };
         document.querySelector(".container").appendChild(btn);
