@@ -17,8 +17,6 @@ fetch("article.json")
     .then(res => res.json())
     .then(data => {
         articles = data.articles;
-
-        // путь к изображению — из папки img/
         articles.forEach(article => {
             article.image = `img/${article.id}.jpg`;
         });
@@ -100,10 +98,10 @@ function activateCatForce() {
     const article = articles.find(a => a.title === "Climate Change and the Future of Renewable Energy");
     if (article) {
         const btn = document.createElement("button");
-        btn.textContent = "🐱 Activate CATFORCE";
+        btn.textContent = " Activate CATFORCE";
         btn.className = "btn btn-outline-primary mt-4";
         btn.onclick = () => {
-            alert("🌍 CATFORCE ACTIVATED! Renewable energy is now 9001% more efficient ⚡🐾");
+            alert(" EASTER EGG ACTIVATED!");
             document.body.style.backgroundImage = "url('https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif')";
             document.body.style.backgroundRepeat = "no-repeat";
             document.body.style.backgroundPosition = "center";
