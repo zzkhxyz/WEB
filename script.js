@@ -6,11 +6,13 @@ const themeToggle = document.getElementById("themeToggle");
 
 let currentTheme = localStorage.getItem("theme") || "light";
 document.documentElement.setAttribute("data-theme", currentTheme);
+themeToggle.textContent = currentTheme === "light" ? "🌞" : "🌜";
 
 themeToggle.addEventListener("click", () => {
     currentTheme = currentTheme === "light" ? "dark" : "light";
     document.documentElement.setAttribute("data-theme", currentTheme);
     localStorage.setItem("theme", currentTheme);
+    themeToggle.textContent = currentTheme === "light" ? "🌞" : "🌜";
 });
 
 fetch("article.json")
@@ -64,7 +66,8 @@ function renderArticles(list) {
       </div>
     `;
 
-        card.querySelector(".card").addEventListener("click", () => {
+        const cardInner = card.querySelector(".card");
+        cardInner.addEventListener("click", () => {
             if (article.category === "Finance") {
                 alert("F has the hat");
             }
